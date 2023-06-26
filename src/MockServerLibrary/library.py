@@ -102,6 +102,9 @@ class MockServerLibrary(object):
         if body_type == 'JSON' and body:
             rsp['body'] = json.dumps(body)
 
+        elif body_type == 'STR' and body:
+            rsp['body'] = body.encode('utf-8').decode('unicode_escape')
+
         return rsp
 
     def create_mock_http_forward(self, path, delay=1, unit='SECONDS'):
